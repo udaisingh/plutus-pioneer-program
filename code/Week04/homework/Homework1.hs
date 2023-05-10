@@ -77,7 +77,7 @@ validator = mkValidatorScript $$(compile [|| mkWrappedMisteryValidator ||])
 ------------------------------------- HELPER FUNCTIONS --------------------------------------------
 
 saveVal :: IO ()
-saveVal = writeValidatorToFile "./assets/mistery1.plutus" validator
+saveVal = writeValidatorToFile "./assets/mistery.plutus" validator
 
 misteryAddressBech32 :: Network -> String
 misteryAddressBech32 network = validatorAddressBech32 network validator

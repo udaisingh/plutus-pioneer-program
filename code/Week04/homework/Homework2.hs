@@ -18,7 +18,7 @@ import           Utilities                 (wrapValidator, writeValidatorToFile)
 ---------------------------------------------------------------------------------------------------
 ------------------------------------------ PROMPT -------------------------------------------------
 
-{-
+{-writeValidatorToFile "./assets/parameterized-mistery.plutus" . validator
 1- Figure out what this (already finished) validator does using all the tools at your disposal.
 2- Write the off-chain code necessary to cover all possible interactions with the validator using
    the off-chain tool of your choosing.
@@ -59,4 +59,4 @@ validator beneficiary = mkValidatorScript ($$(compile [|| mkWrappedParameterized
 ------------------------------------- HELPER FUNCTIONS --------------------------------------------
 
 saveVal :: PubKeyHash -> IO ()
-saveVal = writeValidatorToFile "./assets/parameterized.plutus" . validator
+saveVal = writeValidatorToFile "./assets/parameterized-mistery.plutus" . validator

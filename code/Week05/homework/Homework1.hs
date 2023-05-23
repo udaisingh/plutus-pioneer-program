@@ -40,3 +40,6 @@ mkWrappedDeadlinePolicy pkh deadline = wrapPolicy $ mkDeadlinePolicy pkh deadlin
 deadlinePolicy :: PubKeyHash -> POSIXTime -> MintingPolicy
 deadlinePolicy pkh deadline = mkMintingPolicyScript $
     $$(PlutusTx.compile [|| mkWrappedDeadlinePolicy ||])
+        `PlutusTx.applyCode` PlutusTx.liftCode pkh
+        `PlutusTx.applyCode` PlutusTx.liftCode deadline
+    

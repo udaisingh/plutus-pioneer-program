@@ -15,9 +15,7 @@ module Homework
   )
 where
 
--- import           Plutus.V2.Ledger.Contexts      (txInfoWithdrawals)
--- import           Plutus.V2.Ledger.Tx         (TxOut(..))
--- import           PlutusTx.Builtins.Internal (BuiltinByteString (BuiltinByteString))
+
 
 import Plutus.V2.Ledger.Api
   ( Address,
@@ -35,7 +33,7 @@ import Plutus.V2.Ledger.Api
 import Plutus.V2.Ledger.Tx (txOutAddress)
 import qualified PlutusTx
 import qualified PlutusTx.Builtins as Builtins
-import PlutusTx.Prelude (Bool (..), ($), (&&), (*), (+), (.), (==), (>=))
+import PlutusTx.Prelude (Bool (..), divide, ($), (&&), (*), (+), (.), (==), (>=))
 import qualified PlutusTx.Prelude as PlutusTx
 import Utilities (wrapStakeValidator)
 import Prelude (IO, String, elem, filter, foldr, undefined)
@@ -51,7 +49,7 @@ mkStakeValidator' _pkh _addr () ctx =
       outputs = PlutusTx.map txOutAddress $ txInfoOutputs info
       rewards = filter (\output -> txOutValue output == 1) (txInfoOutputs info)
       rewardAmount = PlutusTx.sum $ PlutusTx.map (getValue . txOutValue) rewards
-      halfRewardAmount = rewardAmount * PlutusTx.toBuiltin (Builtins.divideInteger rewardAmount 2)
+      halfRewardAmount = rewardAmount `divide` 2
    in signer == [_pkh] && _addr `PlutusTx.elem` outputs && rewardAmount >= halfRewardAmount
 
 {-# INLINEABLE mkWrappedStakeValidator' #-}

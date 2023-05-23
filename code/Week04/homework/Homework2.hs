@@ -59,4 +59,4 @@ validator beneficiary = mkValidatorScript ($$(compile [|| mkWrappedParameterized
 ------------------------------------- HELPER FUNCTIONS --------------------------------------------
 
 saveVal :: PubKeyHash -> IO ()
-saveVal = writeValidatorToFile "./assets/parameterized-mistery1.plutus" . validator
+saveVal = writeValidatorToFile "./assets/parameterized-Mistery.plutus" . validator
